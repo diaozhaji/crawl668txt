@@ -22,12 +22,18 @@ cookie_support= urllib2.HTTPCookieProcessor(cookielib.CookieJar())
 opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
 urllib2.install_opener(opener)
 
-htmls_dir = './sis_txt'
+#htmls_dir = './sis_txt/rqyy'
+htmls_dir = './sis_txt/wxxh'
+
 if not os.path.isdir(htmls_dir):
 	os.mkdir(htmls_dir)
 
-for i in range(80,82):
-	url = 'http://38.103.161.185/forum/forum-279-'+str(i)+'.html'
+#279 rqyy 254p
+#96  wxxx  50p
+
+for i in range(2,3):
+	#url = 'http://38.103.161.185/forum/forum-279-'+str(i)+'.html'
+	url = 'http://38.103.161.185/forum/forum-96-'+str(i)+'.html'
 	print url 
 	path = '%s/%s.html' % (htmls_dir, i)
 	print path
