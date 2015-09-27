@@ -29,4 +29,4 @@ except MySQLdb.Error, e:
 
 
 
-# create table novel(id int unsigned not null auto_increment primary key,name char(100) not null,link text, author char(50) ,nums int unsigned ,category char(20) ,update_time int unsigned ,section text);
+# create table novel(id int unsigned not null auto_increment primary key,title char(100) not null,link text, author char(30) ,nums int unsigned ,category char(20) ,update_time int unsigned ,section text);
