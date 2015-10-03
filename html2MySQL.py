@@ -3,9 +3,9 @@
 from lxml import etree
 import MySQLdb
 import time
+import os
 
-
-category = 'llmq'
+category = 'ymyc'
 htmls_dir = './sis_txt/' + category + '/'
 
 outFilePath = 'novel.txt'
@@ -30,12 +30,20 @@ def get_novel_num(num_str):
         return 0
 
 
+# http://zhidao.baidu.com/link?url=rkew-SqtB6EarF-iNLiAL2O-NKA4n3HJiFe7SW51VmGqPQbpZ6gQRCHuepfzYm1arvEyGXvbzwkJXBA34JQBD_
+# http://www.cnblogs.com/bluescorpio/archive/2009/10/21/1587493.html
+def get_pages(dir):
+    for root, dirs, files in os.walk(dir):
+        print len(files) - 1
+        return len(files) - 1   # -1是因为mac系统自带一个隐藏文件
+
+
 try:
     conn = MySQLdb.connect(host='localhost', user='root', passwd='', port=3306)
     cur = conn.cursor()
     conn.select_db('SisNovel')
 
-    for i in range(2, 111):
+    for i in range(2, get_pages(htmls_dir)):
         filename = htmls_dir + str(i) + '.html'
         print filename
         doc = etree.HTML(open(filename, 'r').read().decode('gbk', 'ignore'))
