@@ -25,7 +25,7 @@ urllib2.install_opener(opener)
 # htmls_dir = './sis_txt/rqyy'
 # htmls_dir = './sis_txt/wxxh'
 # htmls_dir = './sis_txt/ymzt'
-htmls_dir = './sis_txt/ymyc'
+htmls_dir = './sis_txt/utf'
 
 if not os.path.isdir(htmls_dir):
     os.mkdir(htmls_dir)
@@ -33,7 +33,7 @@ if not os.path.isdir(htmls_dir):
 # 279 rqyy 254p
 # 96  wxxx  50p
 
-for i in range(1, 1999):
+for i in range(1, 3):
     # rqyy
     # url = 'http://38.103.161.185/forum/forum-279-'+str(i)+'.html'
     # wxxh
@@ -43,7 +43,7 @@ for i in range(1, 1999):
     # ymzt
     # url = 'http://38.103.161.185/forum/forum-58-' + str(i) + '.html'
     # ymyc
-    url = 'http://38.103.161.185/forum/forum-230-' + str(i) + '.html'
+    url = 'http://38.103.161.185/forum/forum-322-' + str(i) + '.html'
 
     print url
     path = '%s/%s.html' % (htmls_dir, i)

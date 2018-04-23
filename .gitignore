@@ -40,3 +40,4 @@ nosetests.xml
 *.html
 *.iml
 .idea/
+*.db
