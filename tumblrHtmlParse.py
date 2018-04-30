@@ -3,6 +3,7 @@
 from bs4 import BeautifulSoup
 import os
 import tumlbrCrawler
+import time
 
 
 def mkdir(path):
@@ -31,15 +32,14 @@ def mkdir(path):
         print(path + ' 目录已存在')
 
 
-static_dir = './tumblr/lelemmm/images/'
+def crawl_img(author, page):
+    static_dir = './tumblr/' + author + '/images/'
 
-
-def crawl_img(page):
     imgs_dir = static_dir + str(page)
 
     mkdir(imgs_dir)
 
-    file_path = './tumblr/lelemmm/html/' + str(page) + ".html"
+    file_path = './tumblr/' + author + '/html/' + str(page) + ".html"
     print(file_path)
 
     img_list = []
@@ -55,11 +55,13 @@ def crawl_img(page):
         name = str.split(item, '/')[4]
         index = index + 1
         img_path = static_dir + str(page) + '/' + name
-        print(img_path)
+        print('存到:' + img_path)
         if os.path.exists(img_path):
             continue
+        print('需要爬:' + item)
         tumlbrCrawler.save_img(item, img_path)
         # print(index)
+    time.sleep(tumlbrCrawler.random_sec(15, 20))
     # return index
 
 
@@ -67,9 +69,14 @@ def crawl_img(page):
 # img_url = 'https://78.media.tumblr.com/1ba516b65d56e167f7dd0d2d8dcba84a/tumblr_p6dthfWnFU1tkv6t1o4_1280.jpg'
 # tumlbrCrawler.save_img(img_url, target_url)
 
-for i in range(20, 26):
-    try:
-        crawl_img(i)
+def parse_tumblr_and_get_imgs(author, start, end):
+    for i in range(start, end):
+        try:
+            crawl_img(author, i)
 
-    except Exception as e:
-        print(e)
+        except Exception as e:
+            print(e)
+
+
+parse_tumblr_and_get_imgs('lelemmm', 150, 180)
+# parse_tumblr_and_get_imgs('kotori950422', 1, 3)

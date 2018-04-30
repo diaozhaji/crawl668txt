@@ -5,6 +5,8 @@ import urllib.request
 import random
 import time
 import requests
+import io
+from PIL import Image
 
 
 # import requests
@@ -14,6 +16,11 @@ def write_file(path, data, mode):
     f = open(path, mode)
     f.write(data)
     f.close()
+
+
+def write_img(path, data):
+    im = Image.open(io.BytesIO(data))
+    im.save(path, 'jpeg')
 
 
 def get_headers():
